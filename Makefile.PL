@@ -17,7 +17,7 @@ EIEIO
 WriteMakefile(
     'NAME'		=> 'Linux::Fuser',
     'VERSION_FROM'	=> 'Fuser.pm',
-    'PREREQ_PM'		=> {},
+    'PREREQ_PM'		=> {'Test::More' => undef},
     ($] >= 5.005 ?  
       (
        AUTHOR     => 'Jonathan Stowe <jns@gellyfish.com>') : ()),
