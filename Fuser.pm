@@ -15,11 +15,10 @@
 #*****************************************************************************
 #*                                                                           *
 #*      $Log: Fuser.pm,v $
-#*      Revision 1.2  2005/03/17 12:18:11  jonathan
-#*      Fixed version number
-#*
-#*      Revision 1.1.1.1  2005/03/17 12:16:42  jonathan
-#*      Re-imported
+#*      Revision 1.3  2005/03/17 19:16:39  jonathan
+#*      * Updated README to reflect tested kernel versions
+#*      * Reorganised the tests
+#*      * Added Test::More as prerequisite
 #*
 #*      Revision 1.2  2001/11/07 07:09:52  gellyfish
 #*      * Fixed thinko reported by Shawn Ferris
@@ -72,12 +71,11 @@ owner.
 use strict;
 
 use vars qw(
-            $VERSION 
-            @ISA 
-           );
+  $VERSION
+  @ISA
+);
 
-($VERSION) = q$Revision: 1.2 $ =~ /([\d.]+)/;
-
+($VERSION) = q$Revision: 1.3 $ =~ /([\d.]+)/;
 
 =item new
 
@@ -88,15 +86,15 @@ reference suitable for calling the methods on.
 
 sub new
 {
-   my ( $proto, @args ) = @_;
+    my ( $proto, @args ) = @_;
 
-   my $class = ref($proto) || $proto;
+    my $class = ref($proto) || $proto;
 
-   my $self = {};
+    my $self = {};
 
-   bless $self, $class;
+    bless $self, $class;
 
-   return $self;
+    return $self;
 
 }
 
@@ -111,58 +109,56 @@ exist.
 
 sub fuser
 {
-  my ($self,$file, @args)  = @_;
+    my ( $self, $file, @args ) = @_;
 
-  return () unless -f $file;
+    return () unless -f $file;
 
-  my @procinfo = ();
+    my @procinfo = ();
 
-  my ( $dev,
-       $ino,
-       @ostuff ) = stat($file);
+    my ( $dev, $ino, @ostuff ) = stat($file);
 
-  opendir PROC,'/proc' or die "Can't access /proc - $!\n";
+    opendir PROC, '/proc' or die "Can't access /proc - $!\n";
 
-  my @procs = grep /^\d+$/, readdir PROC;
+    my @procs = grep /^\d+$/, readdir PROC;
 
-  closedir PROC;
+    closedir PROC;
 
-  foreach my $proc ( @procs )
-  {
-    opendir FD,"/proc/$proc/fd" or next;
-      
-    my @fds = map { "/proc/$proc/fd/$_" } grep /^\d+$/, readdir FD;
-
-    closedir FD;
-
-    foreach my $fd (@fds)
+    foreach my $proc (@procs)
     {
-      if (my @statinfo = stat $fd)
-      {
-         if (($dev == $statinfo[0]) && ($ino == $statinfo[1]) )
-         {
-             my $user =  getpwuid((lstat($fd))[4]);
-             
-             my @cmd = ('');
+        opendir FD, "/proc/$proc/fd" or next;
 
-             if (open CMD, "/proc/$proc/cmdline" )
-             {
-                chomp(@cmd =  <CMD> );
-             }
+        my @fds = map { "/proc/$proc/fd/$_" } grep /^\d+$/, readdir FD;
 
-             my $procinfo = {
-                              pid  => $proc,
-                              user => $user,
-                              cmd  => \@cmd
-                             };
+        closedir FD;
 
-             bless $procinfo,'Linux::Fuser::Procinfo';
-             push @procinfo, $procinfo;
-           }
+        foreach my $fd (@fds)
+        {
+            if ( my @statinfo = stat $fd )
+            {
+                if ( ( $dev == $statinfo[0] ) && ( $ino == $statinfo[1] ) )
+                {
+                    my $user = getpwuid( ( lstat($fd) )[4] );
+
+                    my @cmd = ('');
+
+                    if ( open CMD, "/proc/$proc/cmdline" )
+                    {
+                        chomp( @cmd = <CMD> );
+                    }
+
+                    my $procinfo = {
+                        pid  => $proc,
+                        user => $user,
+                        cmd  => \@cmd
+                    };
+
+                    bless $procinfo, 'Linux::Fuser::Procinfo';
+                    push @procinfo, $procinfo;
+                }
+            }
         }
-      }
     }
-  return @procinfo;
+    return @procinfo;
 }
 
 1;
@@ -202,37 +198,37 @@ use Carp;
 
 use vars qw($AUTOLOAD);
 
-
 sub AUTOLOAD
 {
-   my ( $self, @args ) = @_;
+    my ( $self, @args ) = @_;
 
-   no strict 'refs';
+    no strict 'refs';
 
-   (my $method = $AUTOLOAD ) =~ s/.*://;
+    ( my $method = $AUTOLOAD ) =~ s/.*://;
 
-   return if $method eq 'DESTROY';
+    return if $method eq 'DESTROY';
 
-   if ( exists $self->{$method} )
-   {
-      *{$AUTOLOAD} = sub {
-                           my ( $self, @args ) = @_;
-                           return $self->{$method};
-                          };
-   }
-   else
-   {
-      my $pack = ref($self);
-      croak "Can't find method $method via package $self";
-   }
+    if ( exists $self->{$method} )
+    {
+        *{$AUTOLOAD} = sub {
+            my ( $self, @args ) = @_;
+            return $self->{$method};
+        };
+    }
+    else
+    {
+        my $pack = ref($self);
+        croak "Can't find method $method via package $self";
+    }
 
-   goto &{$AUTOLOAD};
+    goto &{$AUTOLOAD};
 
 }
 
 1;
 
 __END__
+
 =head2 EXPORT
 
 None.

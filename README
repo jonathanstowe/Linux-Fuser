@@ -7,9 +7,9 @@ a file is opened by another process.
 
 The way that it does this is highly OS dependent and I would be surprised
 ( but happily surprised ) if it proves to work on any other OS than Linux
-2.2.* -  If it is found to work on other platforms please do contact the
-author and we will look at changing the name :) I would also be grateful
-of any patches that might cause it to work on other OS.
+from 2.2 onward -  If it is found to work on other platforms please do
+contact the author and we will look at changing the name :) I would also
+be grateful of any patches that might cause it to work on other OS.
 
 INSTALLATION
 
