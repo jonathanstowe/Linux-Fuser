@@ -15,8 +15,11 @@
 #*****************************************************************************
 #*                                                                           *
 #*      $Log: Fuser.pm,v $
-#*      Revision 1.1  2005/03/17 12:16:42  jonathan
-#*      Initial revision
+#*      Revision 1.2  2005/03/17 12:18:11  jonathan
+#*      Fixed version number
+#*
+#*      Revision 1.1.1.1  2005/03/17 12:16:42  jonathan
+#*      Re-imported
 #*
 #*      Revision 1.2  2001/11/07 07:09:52  gellyfish
 #*      * Fixed thinko reported by Shawn Ferris
@@ -73,7 +76,7 @@ use vars qw(
             @ISA 
            );
 
-($VERSION) = q$Revision: 1.1 $ =~ /([\d.]+)/;
+($VERSION) = q$Revision: 1.2 $ =~ /([\d.]+)/;
 
 
 =item new
