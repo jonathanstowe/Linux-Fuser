@@ -26,6 +26,10 @@ This module has no dependencies other than it will almost certainly only
 work on a Linux system with a /proc filesystem compatible with the one
 found with the 2.2.* kernel.
 
+EXAMPLES
+
+Then supplied 'pfuser' program shows the basic usage of this module.
+
 COPYRIGHT AND LICENCE
 
 Copyright (C)2001 Jonathan Stowe <jns@gellyfish.com>
