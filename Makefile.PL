@@ -18,6 +18,7 @@ WriteMakefile(
     'NAME'		=> 'Linux::Fuser',
     'VERSION_FROM'	=> 'Fuser.pm',
     'PREREQ_PM'		=> {'Test::More' => undef},
+    'EXE_FILES'      => ['bin/pfuser'],
     ($] >= 5.005 ?  
       (
        AUTHOR     => 'Jonathan Stowe <jns@gellyfish.com>') : ()),

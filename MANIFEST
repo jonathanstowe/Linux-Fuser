@@ -3,4 +3,6 @@ Fuser.pm
 MANIFEST
 Makefile.PL
 README
+bin/pfuser
 t/1.t
+META.yml                                Module meta-data (added by MakeMaker)
