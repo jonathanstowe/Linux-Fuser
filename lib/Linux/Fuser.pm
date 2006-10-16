@@ -75,7 +75,7 @@ use vars qw(
   @ISA
 );
 
-($VERSION) = q$Revision: 1.3 $ =~ /([\d.]+)/;
+$VERSION = '1.4';
 
 =item new
 
@@ -165,6 +165,8 @@ sub fuser
 
 package Linux::Fuser::Procinfo;
 
+=back
+
 =head2 PER PROCESS METHODS
 
 The fuser() method will return a list of objects of type Linux::Fuser::Procinfo
@@ -189,7 +191,6 @@ line.
 
 =back
 
-=back
 
 =cut
 

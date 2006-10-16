@@ -1,8 +1,10 @@
 Changes
-Fuser.pm
+lib/Linux/Fuser.pm
 MANIFEST
 Makefile.PL
 README
-bin/pfuser
-t/1.t
+examples/pfuser
 META.yml                                Module meta-data (added by MakeMaker)
+t/01pod.t
+t/02podcoverage.t
+t/1.t
