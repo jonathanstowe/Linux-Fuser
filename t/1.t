@@ -1,5 +1,5 @@
 
-use Test::More tests => 6;
+use Test::More tests => 9;
 use_ok('Linux::Fuser');
 
 
@@ -12,10 +12,14 @@ eval
    
    ok(@procs,"The file has users");
    my ($proc ) =   @procs;
+   isa_ok($proc,'Linux::Fuser::Procinfo');
    my $pid  = $proc->pid();
-   ok($pid = $$,"Got the right PID");
+   is($pid,$$,"Got the right PID");
    my $user = $proc->user();
-   ok($user eq scalar getpwuid($>), "And I'm the right user");
+   is($user,scalar getpwuid($>), "And I'm the right user");
+   my $filedes = $proc->filedes();
+   isa_ok($filedes, 'Linux::Fuser::FileDescriptor');
+   like($filedes->fd(),qr/\d+/, "fd() is a number");
    close F;
 };
 ok(!$@, "Works for existing file");

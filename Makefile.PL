@@ -21,5 +21,5 @@ WriteMakefile(
     'EXE_FILES'      => ['examples/pfuser'],
     ($] >= 5.005 ?  
       (
-       AUTHOR     => 'Jonathan Stowe <jns@gellyfish.com>') : ()),
+       AUTHOR     => 'Jonathan Stowe <jns@gellyfish.co.uk>') : ()),
 );
