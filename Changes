@@ -21,3 +21,6 @@ Tue Mar 10 13:18:08 GMT 2009
          - 1.5 Added FD Specific details in Linux::Fuser::FileDescriptor
                (Requested by Tyler MacDonald)
                Changed contact details
+
+Sun Oct 27 10:18:47 GMT 2013
+	 - 1.6 Updated metadata, new respository

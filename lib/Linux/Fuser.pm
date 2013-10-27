@@ -63,7 +63,7 @@ use vars qw(
             @ISA
            );
 
-$VERSION = '1.5';
+$VERSION = '1.6';
 
 =item new
 
@@ -344,6 +344,11 @@ None.
 =head1 AUTHOR
 
 Jonathan Stowe, E<lt>jns@gellyfish.co.ukE<gt>
+
+=head1 SUPPORT
+
+Patches are always welcome against the latest code at
+https://github.com/jonathanstowe/Linux-Fuser
 
 =head1 COPYRIGHT AND LICENSE
 

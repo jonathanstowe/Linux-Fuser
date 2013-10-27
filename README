@@ -29,10 +29,10 @@ to new kernel versions.
 
 SOURCE CODE
 
-The source code for this module is hosted on Google code. You can checkout
-the latest version via subversion from:
+The source code for this module is hosted on Github.  You can obtain
+the latest version via git from:
 
-  http://jstowe.googlecode.com/svn/trunk/Linux-Fuser/
+  https://github.com/jonathanstowe/Linux-Fuser
 
 EXAMPLES
 
@@ -40,7 +40,7 @@ Then supplied 'pfuser' program shows the basic usage of this module.
 
 COPYRIGHT AND LICENCE
 
-Copyright (C)2001 - 2009 Jonathan Stowe <jns@gellyfish.co.uk>
+Copyright (C)2001 - 2013 Jonathan Stowe <jns@gellyfish.co.uk>
 
 This software carries no warranty either express of implied.
 
